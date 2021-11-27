@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tiendas_mobile/model/products.dart';
-import 'package:tiendas_mobile/persistence/product_dao.dart';
+import 'package:info_stores/model/products.dart';
+import 'package:info_stores/persistence/product_dao.dart';
 
 class SecondRoute extends StatefulWidget {
   const SecondRoute({Key? key}) : super(key: key);
