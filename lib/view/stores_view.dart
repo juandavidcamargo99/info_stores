@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tiendas_mobile/model/store.dart';
-import 'package:tiendas_mobile/persistence/stores_dao.dart';
-import 'package:tiendas_mobile/view/products_view.dart';
+import 'package:info_store/model/store.dart';
+import 'package:info_store/persistence/stores_dao.dart';
+import 'package:info_store/view/products_view.dart';
 
 
 class StoresListView extends StatefulWidget {
