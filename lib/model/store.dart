@@ -8,6 +8,7 @@ class Store {
   String address;
   String cellphone;
   String email;
+  String description;
   BussinessType type;
 
   Store(
@@ -16,6 +17,7 @@ class Store {
       this.address,
       this.cellphone,
       this.email,
+      this.description,
       this.type);
 
   Store.fromJson(Map<String, dynamic> json)
@@ -24,6 +26,7 @@ class Store {
         address = json['address'].toString(),
         cellphone = json['cellphone'].toString(),
         email = json['email'].toString(),
+        description = json['description'].toString(),
         type = BussinessType.values.firstWhere((element) =>
         element.toString() == 'BussinessType.' + json['type'].toString());
 }
