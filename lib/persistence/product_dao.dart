@@ -1,6 +1,6 @@
 import 'dart:convert' as JSON;
-import 'package:tiendas_mobile/model/products.dart';
-import 'package:tiendas_mobile/persistence/server_connection.dart';
+import 'package:info_stores/model/products.dart';
+import 'package:info_stores/persistence/server_connection.dart';
 
 class ProductDAO{
   static final List<Product> products = [];
