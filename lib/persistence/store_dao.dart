@@ -1,6 +1,6 @@
 import 'dart:convert' as JSON;
-import 'package:info_store/model/store.dart';
-import 'package:info_store/persistence/server_connection.dart';
+import '../model/store.dart';
+import '../persistence/server_connection.dart';
 
 class StoreDAO{
   static final List<Store> stores = [];
