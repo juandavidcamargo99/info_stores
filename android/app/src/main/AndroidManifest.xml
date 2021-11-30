@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.infoStore.info_store">
+    package="com.infoStore.info_stores">
    <application
-        android:label="info_store"
+        android:label="info_stores"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
