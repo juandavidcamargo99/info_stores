@@ -1,6 +1,7 @@
 import 'dart:html';
 import 'package:flutter/material.dart';
 import 'stores_view.dart';
+import 'customer_form.dart';
 
 class HomeView extends StatelessWidget {
   List<String> images = [
@@ -54,6 +55,12 @@ class HomeView extends StatelessWidget {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => StoresListView()),
+      );
+    }
+    else if(index == 2) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => CustomerFormView()),
       );
     }
     return;
