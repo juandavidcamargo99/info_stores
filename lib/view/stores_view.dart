@@ -23,24 +23,12 @@ class _StoresListViewState extends State<StoresListView> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Listado de negocios en el barrio'),
+        backgroundColor: Colors.green,
       ),
-      body: _buildStoresList(
-      ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => SecondRoute()),
-          );
-        },
-        label: const Text('Productos'),
-        icon: const Icon(Icons.add_shopping_cart_sharp),
-        backgroundColor: Colors.greenAccent,
-      ),
+      body: _buildStoresList(),
     );
 
   }
-
 
   Widget _buildStoresList() {
     return ListView.builder(
@@ -55,12 +43,23 @@ class _StoresListViewState extends State<StoresListView> {
   Widget _buildRow(Store st) {
 
     return ListTile(
-      title: Text(st.name, style: TextStyle(fontSize: 20, color: Colors.blue)),
-      subtitle: Text(st.description,style: TextStyle(fontSize: 20, color: Colors.cyan)),
+      title: Text(st.name, style: const TextStyle(fontSize: 20, color: Colors.blue)),
+      subtitle: Text(st.description,style: const TextStyle(fontSize: 20, color: Colors.cyan)),
       trailing: ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            launch(st.url);
+            },
           child: const Text('Visitar sitio del vendedor')
       ),
+      onTap: () {
+        var prDAO = ProductsDAO();
+        prDAO.getProductsFromServer(st.id).then((listaProductos) => {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => SecondRoute(listaProductos)),
+          ),
+        });
+      },
     );
 
   }
