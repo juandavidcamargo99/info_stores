@@ -22,5 +22,15 @@ class ServerConnection {
       return 'Response status: ${response.statusCode}';
     }
   }
+  
+  Future<String> getProducts(String idtienda) async {
+    final url = Uri.parse(_svrUrl+'?acc=3&idt='+idtienda);
+    var response = await http.get(url);
+    if(response.statusCode == 200){
+      return response.body;
+    }else{
+      return 'Response status: ${response.statusCode}';
+    }
+  }
 }
 
