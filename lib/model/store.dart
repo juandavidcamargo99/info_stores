@@ -9,6 +9,7 @@ class Store {
   final String cellphone;
   final String email;
   final String url;
+  final double latitud, longitud;
   final String description;
   final BusinessType type;
 
@@ -19,6 +20,8 @@ class Store {
       this.cellphone,
       this.email,
       this.url,
+      this.latitud,
+      this.longitud,
       this.description,
       this.type);
 
@@ -29,7 +32,21 @@ class Store {
         cellphone = json['cellphone'].toString(),
         email = json['email'],
         url = json['url'].toString(),
+        latitud = double.parse(json['latitud'].toString()),
+        longitud = double.parse(json['longitud'].toString()),
         description = json['description'],
         type = BusinessType.values.firstWhere((element) =>
         element.toString() == 'BusinessType.' + json['type'].toString());
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "name": name,
+    "address": address,
+    "latitud": latitud,
+    "longitud": longitud,
+    "cellphone": cellphone,
+    "email": email,
+    "url": url,
+    "type": type.toString()
+  };
 }

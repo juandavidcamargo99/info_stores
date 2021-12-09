@@ -1,5 +1,6 @@
 import 'dart:html';
 import 'package:flutter/material.dart';
+import 'package:info_stores/view/products_view.dart';
 import 'stores_view.dart';
 
 class HomeView extends StatelessWidget {
@@ -55,6 +56,9 @@ class HomeView extends StatelessWidget {
         context,
         MaterialPageRoute(builder: (context) => StoresListView()),
       );
+    }
+    if (index == 1) {
+
     }
     return;
   }
