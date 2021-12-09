@@ -23,7 +23,7 @@ class _StoresListViewState extends State<StoresListView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Listado de negocios en el barrio'),
+        title: const Text('Negocios cerca tuyo'),
       ),
       body: _buildStoresList(
       ),

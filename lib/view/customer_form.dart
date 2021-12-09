@@ -9,14 +9,12 @@ class CustomerFormView extends StatelessWidget {
   Widget build(BuildContext context) {
     const appTitle = 'Registro de clientes';
 
-    return MaterialApp(
-      title: appTitle,
-      home: Scaffold(
+    return Scaffold(
         appBar: AppBar(
           title: const Text(appTitle),
+          automaticallyImplyLeading: true
         ),
         body: const MyCustomForm(),
-      ),
     );
   }
 }
