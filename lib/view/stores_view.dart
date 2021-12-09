@@ -23,7 +23,7 @@ class _StoresListViewState extends State<StoresListView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Negocios cerca tuyo'),
+        title: const Text('Listado de negocios en el barrio'),
       ),
       body: _buildStoresList(
       ),
@@ -62,7 +62,7 @@ class _StoresListViewState extends State<StoresListView> {
           onPressed: () {
           launch(st.url);
           },
-          child: const Text('Visitar sitio del vendedor')
+          child: const Icon(Icons.arrow_forward)
       ),
       onTap: (){
         var prDAO = ProductsDAO();
@@ -76,9 +76,5 @@ class _StoresListViewState extends State<StoresListView> {
     );
   }
 }
-
-
-
-
 
 
