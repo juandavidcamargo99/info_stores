@@ -1,41 +1,65 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../model/products.dart';
-import '../persistence/product_dao.dart';
+import '../model/product.dart';
 
-class SecondRoute extends StatefulWidget {
-  const SecondRoute({Key? key}) : super(key: key);
+class ProductsListView extends StatefulWidget {
+
+  final List<Product> LstPr;
+
+  ProductsListView(this.LstPr);
 
   @override
-  _SecondRouteState createState() => _SecondRouteState();
+  _ProductsListViewState createState() => _ProductsListViewState();
 
 }
-class _SecondRouteState extends State<SecondRoute> {
-  //
-  final _products = ProductDAO.products;
+
+
+class _ProductsListViewState extends State<ProductsListView> {
+  //final stDAO = StoreDAO();
+  final _biggerFont = const TextStyle(fontSize: 18.0, color: Colors.blueAccent);
 
   @override
-
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Productos"),
+        title: const Text('Lista de Negocios en el Barrio'),
       ),
-      body: _buildProductList(),
+      body: _buildStoreList(),
     );
   }
-  Widget _buildProductList() {
+
+  Widget _buildStoreList() {
     return ListView.builder(
-        padding: const EdgeInsets.all(16),
-        itemCount: _products.length,
-        itemBuilder: (BuildContext _context, int i) {
-          return _buildRow(_products[i]);
-        }
-    );
+        padding: const EdgeInsets.all(16.0),
+        itemCount: widget.LstPr.length,
+        itemBuilder: (
+            context,
+            i,
+            ) {
+          return _buildRow(widget.LstPr[i]);
+        });
   }
-  Widget _buildRow(Product pr) {
+
+  Widget _buildRow(Product pdt) {
     return ListTile(
-      title: Text(pr.store, style: TextStyle(fontSize: 20, color: Colors.blue)),
-      subtitle:Text(pr.product, style: TextStyle(fontSize: 20, color: Colors.cyan)),
+      title: Text(
+        pdt.nombre,
+        style: _biggerFont,
+      ),
+      subtitle: Text(
+        pdt.precio.toString(),
+        style: TextStyle(fontSize: 20, color: Colors.blue),
+      ),
+      trailing: Icon(
+        Icons.ac_unit_outlined,
+        size: 20,
+        color: Colors.amber,
+      ),
+      onTap: () {
+
+
+
+      },
     );
   }
 }

@@ -1,5 +1,5 @@
 import 'dart:convert' as JSON;
-import '../model/products.dart';
+import '../model/product.dart';
 import '../persistence/server_connection.dart';
 
 class ProductsDAO{

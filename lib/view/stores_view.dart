@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import '../model/store.dart';
+import '../persistence/product_dao.dart';
 import '../persistence/store_dao.dart';
-import '../view/products_view.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../view/products_view.dart';
 
 
 class StoresListView extends StatefulWidget {
   const StoresListView({Key? key}) : super(key: key);
-
   @override
   _StoresListViewState createState() => _StoresListViewState();
 
@@ -29,10 +29,10 @@ class _StoresListViewState extends State<StoresListView> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          Navigator.push(
+          /*Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => SecondRoute()),
-          );
+          );*/
         },
         label: const Text('Productos'),
         icon: const Icon(Icons.add_shopping_cart_sharp),
@@ -64,8 +64,16 @@ class _StoresListViewState extends State<StoresListView> {
           },
           child: const Text('Visitar sitio del vendedor')
       ),
+      onTap: (){
+        var prDAO = ProductsDAO();
+        prDAO.getProductsFromServer(st.id).then((listaProductos) => {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => ProductsListView(listaProductos)),
+          ),
+        });
+      },
     );
-
   }
 }
 
