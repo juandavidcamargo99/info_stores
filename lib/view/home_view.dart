@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:info_stores/view/products_view.dart';
 import 'stores_view.dart';
 import 'customer_form.dart';
 
@@ -56,11 +57,8 @@ class HomeView extends StatelessWidget {
         MaterialPageRoute(builder: (context) => StoresListView()),
       );
     }
-    else if(index == 2) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => CustomerFormView()),
-      );
+    if (index == 1) {
+
     }
     return;
   }

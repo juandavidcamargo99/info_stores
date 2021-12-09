@@ -1,8 +1,8 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 
 class ServerConnection {
-  final _svrUrl = 'https://script.google.com/macros/s/AKfycbyjGpqDz_7i25JvIoI6MJBQloiBT241r2boXBTS3OA3jkDEJnU/exec';
-
+  final _svrUrl = dotenv.get('svrUrl');
   Future<String> select(String table) async {
     final url = Uri.parse(_svrUrl + '?action=1&table=' + table);
     var response = await http.get(url);
@@ -19,6 +19,16 @@ class ServerConnection {
     if (response.statusCode == 200) {
       return response.body;
     } else {
+      return 'Response status: ${response.statusCode}';
+    }
+  }
+
+  Future<String> getProducts(String idtienda) async {
+    final url = Uri.parse(_svrUrl+'?action=3&idStore='+idtienda);
+    var response = await http.get(url);
+    if(response.statusCode == 200){
+      return response.body;
+    }else{
       return 'Response status: ${response.statusCode}';
     }
   }

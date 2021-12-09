@@ -1,32 +1,52 @@
 import 'dart:convert';
 
-enum BussinessType{ Tienda, Drogueria, Ferreteria, Lavanderia }
+enum BusinessType{ Tienda, Drogueria, Ferreteria, Lavanderia }
 
 class Store {
-  String id;
-  String name;
-  String address;
-  String cellphone;
-  String email;
-  String description;
-  BussinessType type;
+  final String id;
+  final String name;
+  final String address;
+  final String cellphone;
+  final String email;
+  final String url;
+  final double latitud, longitud;
+  final String description;
+  final BusinessType type;
 
-  Store(
-      this.id,
+
+  Store(this.id,
       this.name,
       this.address,
       this.cellphone,
       this.email,
+      this.url,
+      this.latitud,
+      this.longitud,
       this.description,
       this.type);
 
   Store.fromJson(Map<String, dynamic> json)
       : id = json['id'].toString(),
-        name = json['name'].toString(),
-        address = json['address'].toString(),
+        name = json['name'],
+        address = json['address'],
         cellphone = json['cellphone'].toString(),
-        email = json['email'].toString(),
-        description = json['description'].toString(),
-        type = BussinessType.values.firstWhere((element) =>
-        element.toString() == 'BussinessType.' + json['type'].toString());
+        email = json['email'],
+        url = json['url'].toString(),
+        latitud = double.parse(json['latitud'].toString()),
+        longitud = double.parse(json['longitud'].toString()),
+        description = json['description'],
+        type = BusinessType.values.firstWhere((element) =>
+        element.toString() == 'BusinessType.' + json['type'].toString());
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "name": name,
+    "address": address,
+    "latitud": latitud,
+    "longitud": longitud,
+    "cellphone": cellphone,
+    "email": email,
+    "url": url,
+    "type": type.toString()
+  };
 }
