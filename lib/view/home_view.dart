@@ -18,7 +18,7 @@ class HomeView extends StatelessWidget {
       title: 'Lista de nombres',
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('lISTA'),
+          title: const Text('Info Stores'),
           backgroundColor: Colors.cyan
 
         ),
@@ -57,8 +57,11 @@ class HomeView extends StatelessWidget {
         MaterialPageRoute(builder: (context) => StoresListView()),
       );
     }
-    if (index == 1) {
-
+    else if(index == 2) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => CustomerFormView()),
+      );
     }
     return;
   }
