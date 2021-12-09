@@ -1,4 +1,3 @@
-import 'dart:html';
 import 'package:flutter/material.dart';
 import 'stores_view.dart';
 import 'customer_form.dart';
