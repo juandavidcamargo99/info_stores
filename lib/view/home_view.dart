@@ -1,7 +1,7 @@
-import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:info_stores/view/products_view.dart';
 import 'stores_view.dart';
+import 'customer_form.dart';
 
 class HomeView extends StatelessWidget {
   List<String> images = [
