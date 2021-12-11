@@ -13,16 +13,13 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return MaterialApp(
       title: 'Lista de nombres',
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Info Stores'),
-          backgroundColor: Colors.cyan
-
-        ),
+            title: const Text('Info Stores'), backgroundColor: Colors.cyan),
         body: Container(
+            width: double.infinity,
             padding: EdgeInsets.all(12.0),
             child: GridView.builder(
               itemCount: images.length,
@@ -32,7 +29,7 @@ class HomeView extends StatelessWidget {
               ),
               itemBuilder: (context, index) => buildCell(context, index),
             )),
-        ),
+      ),
     );
   }
 
@@ -41,11 +38,15 @@ class HomeView extends StatelessWidget {
       onTap: () {
         _navigateTo(context, index);
       }, // handle your image tap here
-      child: Image.asset(
-        images[index],
-        fit: BoxFit.cover, // this is the solution for border
-        width: 110.0,
-        height: 110.0,
+
+      child: Padding(
+        padding: EdgeInsets.all(20.0),
+        child: Image.asset(
+          images[index],
+          fit: BoxFit.cover, // this is the solution for border
+          width: 110.0,
+          height: 110.0,
+        ),
       ),
     );
   }
@@ -56,8 +57,7 @@ class HomeView extends StatelessWidget {
         context,
         MaterialPageRoute(builder: (context) => StoresListView()),
       );
-    }
-    else if(index == 2) {
+    } else if (index == 2) {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => CustomerFormView()),
