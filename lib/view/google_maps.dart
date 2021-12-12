@@ -1,33 +1,57 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
+import '../model/store.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class GoogleMapWidget extends StatefulWidget {
-  @override
-  State<GoogleMapWidget> createState() => GoogleMapWidgetState();
-}
-
-class GoogleMapWidgetState extends State<GoogleMapWidget> {
-  Completer<GoogleMapController> _controller = Completer();
-
-  static final CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
-    zoom: 14.4746,
-  );
-
-  static final CameraPosition _kLake = CameraPosition(
-      bearing: 192.8334901395799,
-      target: LatLng(37.43296265331129, -122.08832357078792),
-      tilt: 59.440717697143555,
-      zoom: 19.151926040649414);
+class GoogleMapsWidget extends StatelessWidget {
+  final Store store;
+  GoogleMapsWidget(this.store);
 
   @override
   Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Google Maps'),
+          backgroundColor: Colors.redAccent,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back, color: Colors.white),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+        ),
+        body: GoogleMapsView(store),
+      ),
+    );
+  }
+}
+
+class GoogleMapsView extends StatefulWidget {
+  final Store store;
+  GoogleMapsView(this.store);
+
+  @override
+  State<GoogleMapsView> createState() => GoogleMapsViewState();
+}
+
+class GoogleMapsViewState extends State<GoogleMapsView> {
+  Completer<GoogleMapController> _controller = Completer();
+
+  @override
+  Widget build(BuildContext context) {
+    final CameraPosition _mainCamera = CameraPosition(
+      target: LatLng(widget.store.latitud, widget.store.longitud),
+      zoom: 18,
+    );
     return new Scaffold(
       body: GoogleMap(
-        mapType: MapType.hybrid,
-        initialCameraPosition: _kGooglePlex,
+        mapType: MapType.normal,
+        initialCameraPosition: _mainCamera,
+        markers: {
+          Marker(
+              markerId: MarkerId(widget.store.id),
+              position: LatLng(widget.store.latitud, widget.store.longitud),
+              infoWindow: InfoWindow(title: widget.store.name)),
+        },
         onMapCreated: (GoogleMapController controller) {
           _controller.complete(controller);
         },
@@ -40,8 +64,5 @@ class GoogleMapWidgetState extends State<GoogleMapWidget> {
     );
   }
 
-  Future<void> _goToTheLake() async {
-    final GoogleMapController controller = await _controller.future;
-    controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));
-  }
+  Future<void> _goToTheLake() async {}
 }

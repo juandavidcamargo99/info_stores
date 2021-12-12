@@ -2,12 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:info_stores/view/google_maps.dart';
 import '../model/product.dart';
+import '../model/store.dart';
 
 class ProductsListView extends StatefulWidget {
 
+  final Store store;
   final List<Product> LstPr;
 
-  ProductsListView(this.LstPr);
+  ProductsListView(this.LstPr, this.store);
 
   @override
   _ProductsListViewState createState() => _ProductsListViewState();
@@ -23,7 +25,7 @@ class _ProductsListViewState extends State<ProductsListView> {
       case 0:
         Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => GoogleMapWidget()),
+            MaterialPageRoute(builder: (context) => GoogleMapsWidget(widget.store)),
         );
         break;
       case 1:
