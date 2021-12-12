@@ -11,6 +11,7 @@ class Store {
   final String url;
   final double latitud, longitud;
   final String description;
+  final String logo;
   final BusinessType type;
 
 
@@ -23,6 +24,7 @@ class Store {
       this.latitud,
       this.longitud,
       this.description,
+      this.logo,
       this.type);
 
   Store.fromJson(Map<String, dynamic> json)
@@ -35,6 +37,7 @@ class Store {
         latitud = double.parse(json['latitud'].toString()),
         longitud = double.parse(json['longitud'].toString()),
         description = json['description'],
+        logo = json['logo'].toString(),
         type = BusinessType.values.firstWhere((element) =>
         element.toString() == 'BusinessType.' + json['type'].toString());
 
@@ -47,6 +50,7 @@ class Store {
     "cellphone": cellphone,
     "email": email,
     "url": url,
+    "logo":logo,
     "type": type.toString()
   };
 }

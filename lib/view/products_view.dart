@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:info_stores/view/google_maps.dart';
 import '../model/product.dart';
 
 class ProductsListView extends StatefulWidget {
@@ -15,15 +16,37 @@ class ProductsListView extends StatefulWidget {
 
 
 class _ProductsListViewState extends State<ProductsListView> {
-  //final stDAO = StoreDAO();
   final _biggerFont = const TextStyle(fontSize: 18.0, color: Colors.blueAccent);
+
+  void handleTap(int item) {
+    switch (item) {
+      case 0:
+        Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => GoogleMapWidget()),
+        );
+        break;
+      case 1:
+        print('dsa');
+        break;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Productos'),
-        automaticallyImplyLeading: true
+        automaticallyImplyLeading: true,
+        actions: <Widget>[
+          PopupMenuButton<int>(
+              onSelected: (item) => handleTap(item),
+              itemBuilder: (context) => [
+                PopupMenuItem<int>(value: 0, child: Text('Mapa')),
+                PopupMenuItem<int>(value: 0, child: Text('Carrito Compras')),
+              ]
+          ),
+        ],
       ),
       body: _buildStoreList(),
     );
