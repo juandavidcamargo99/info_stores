@@ -1,8 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'store.dart';
-import 'package:info_stores/view/products_view.dart';
 import 'stores_view.dart';
 import 'customer_form.dart';
 
