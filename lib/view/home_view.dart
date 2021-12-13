@@ -4,25 +4,30 @@ import 'package:flutter/material.dart';
 import 'stores_view.dart';
 import 'customer_form.dart';
 
-class HomeView extends StatelessWidget {
+class HomeView extends StatefulWidget {
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
   List<String> images = [
     "images/tiendas.png",
-    "images/pedidos.png",
+    "images/buzon.png",
     "images/clientes.png",
-    "images/buzon.png"
+    "images/pedidos.png"
   ];
 
   @override
   void initState() {
     FirebaseMessaging.instance.getInitialMessage();
     FirebaseMessaging.onMessage.listen(
-        (message){
-          if(message.notification != null){
-            print(message.notification!.body);
-            print(message.notification!.title);
-          }
-          print(message);
-        },
+          (message){
+        if(message.notification != null){
+          print(message.notification!.body);
+          print(message.notification!.title);
+        }
+        print(message);
+      },
     );
 
     FirebaseMessaging.onMessageOpenedApp.listen(
