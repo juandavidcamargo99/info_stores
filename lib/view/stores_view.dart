@@ -25,8 +25,7 @@ class _StoresListViewState extends State<StoresListView> {
       appBar: AppBar(
         title: const Text('Negocios cerca tuyo'),
       ),
-      body: _buildStoresList(
-      ),
+      body: _buildStoresList(),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           /*Navigator.push(
@@ -57,19 +56,19 @@ class _StoresListViewState extends State<StoresListView> {
 
     return ListTile(
       title: Text(st.name, style: TextStyle(fontSize: 20, color: Colors.blue)),
-      subtitle: Text(st.description,style: TextStyle(fontSize: 20, color: Colors.cyan)),
-      trailing: ElevatedButton(
-          onPressed: () {
-          launch(st.url);
-          },
-          child: const Text('Visitar sitio del vendedor')
+      subtitle: Text(st.address, style : TextStyle(fontSize: 15, color: Colors.cyan)),
+      trailing: IconButton(
+          onPressed: () { launch(st.url); },
+          icon:Icon(Icons.travel_explore_outlined),
+          color: Colors.deepPurple,
       ),
+      leading: Image.network("https://drive.google.com/uc?export=view&id=" + st.logo),
       onTap: (){
         var prDAO = ProductsDAO();
         prDAO.getProductsFromServer(st.id).then((listaProductos) => {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => ProductsListView(listaProductos)),
+            MaterialPageRoute(builder: (context) => ProductsListView(listaProductos, st)),
           ),
         });
       },
