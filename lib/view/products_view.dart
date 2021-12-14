@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:info_stores/persistence/database_manager.dart';
 import 'package:info_stores/view/google_maps.dart';
+import 'package:info_stores/view/order_view.dart';
 import '../model/product.dart';
 import '../model/store.dart';
 
@@ -29,7 +31,10 @@ class _ProductsListViewState extends State<ProductsListView> {
         );
         break;
       case 1:
-        print('dsa');
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => OrderView()),
+        );
         break;
     }
   }
@@ -45,7 +50,7 @@ class _ProductsListViewState extends State<ProductsListView> {
               onSelected: (item) => handleTap(item),
               itemBuilder: (context) => [
                 PopupMenuItem<int>(value: 0, child: Text('Mapa')),
-                PopupMenuItem<int>(value: 0, child: Text('Carrito Compras')),
+                PopupMenuItem<int>(value: 1, child: Text('Carrito Compras')),
               ]
           ),
         ],
@@ -76,14 +81,15 @@ class _ProductsListViewState extends State<ProductsListView> {
         pdt.precio.toString(),
         style: TextStyle(fontSize: 20, color: Colors.blue),
       ),
-      trailing: Icon(
-        Icons.ac_unit_outlined,
-        size: 20,
-        color: Colors.amber,
+      trailing: IconButton(
+        icon: Icon(Icons.add_shopping_cart, color: Colors.cyan),
+        onPressed: () {
+          pdt.cantidad = 1;
+          DataBaseManager.db.insertarNuevoProductoTemp(pdt);
+
+        },
       ),
       onTap: () {
-
-
 
       },
     );
