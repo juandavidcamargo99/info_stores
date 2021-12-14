@@ -31,10 +31,11 @@ class _ProductsListViewState extends State<ProductsListView> {
         );
         break;
       case 1:
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => OrderView()),
-        );
+        DataBaseManager.db.listaProductosPedidoTemp().then((value) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => OrderView(value)));
+        });
         break;
     }
   }

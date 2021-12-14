@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class Product{
   late int id;
   late int idtienda;
@@ -26,12 +28,12 @@ class Product{
   }
 
   Product.fromJson(Map<String, dynamic> json)
-      : id = int.parse(json['id']),
-        idtienda = int.parse(json['idtienda']),
+      : id = int.parse(json['id'].toString()),
+        idtienda = int.parse(json['idtienda'].toString()),
         nombre = json['nombre'],
         unidad = json['unidad'],
-        precio = double.parse(json['precio']),
-        cantidad = int.parse(json['cantidad']);
+        precio = double.parse(json['precio'].toString()),
+        cantidad = int.parse(json['cantidad'].toString());
 
   Map<String, dynamic> toJson(int cantidad) => {
     "id": id,

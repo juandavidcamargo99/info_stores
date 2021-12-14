@@ -1,37 +1,44 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../persistence/database_manager.dart';
+import 'package:info_stores/persistence/database_manager.dart';
+import '../model/product.dart';
+import '../model/store.dart';
 
-class OrderView extends StatelessWidget {
+class OrderView extends StatefulWidget {
+
+  final List<Product> order;
+
+  OrderView(this.order);
+
   @override
   _OrderListViewState createState() => _OrderListViewState();
 
 }
 
-class _OrderListViewState extends State<OrderListView> {
-  final _biggerFont = const TextStyle(fontSize: 18.0, color: Colors.blueAccent);
 
-  }
+class _OrderListViewState extends State<OrderView> {
+  final _biggerFont = const TextStyle(fontSize: 18.0, color: Colors.blueAccent);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Carrito de compras'),
-        automaticallyImplyLeading: true,
+        title: const Text('Carrito'),
+        automaticallyImplyLeading: true
       ),
-      body: _buildStoreList(),
+      body: _buildOrderList(),
     );
   }
 
-  Widget _buildStoreList() {
+  Widget _buildOrderList() {
     return ListView.builder(
         padding: const EdgeInsets.all(16.0),
-        itemCount: listaProductosPedidoTemp(),
-        itemBuilder: (
-            context,
-            i,
-            ) {
-          return _buildRow();
+        itemCount: widget.order.length * 2,
+        itemBuilder: (context, i) {
+          if (i.isOdd) return const Divider();
+
+          int index = i ~/ 2;
+          return _buildRow(widget.order[index]);
         });
   }
 
@@ -45,17 +52,7 @@ class _OrderListViewState extends State<OrderListView> {
         pdt.precio.toString(),
         style: TextStyle(fontSize: 20, color: Colors.blue),
       ),
-      trailing: IconButton(
-        icon: Icon(Icons.add_shopping_cart, color: Colors.cyan),
-        onPressed: () {
-          pdt.cantidad = 1;
-          DataBaseManager.db.insertarNuevoProductoTemp(pdt);
-
-        },
-      ),
-      onTap: () {
-
-      },
+      trailing: Text(pdt.cantidad.toString())
     );
   }
 }
